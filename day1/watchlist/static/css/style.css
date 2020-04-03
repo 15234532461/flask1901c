@@ -19,6 +19,7 @@ footer{
     list-style: none;
     padding: 0;
     margin-bottom: 15px;
+    /* 左偏移，右偏移 */
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 .movie-list li{
@@ -80,6 +81,16 @@ nav li a:hover{
     color: white;
     border: 1px solid black;
 }
+/* .alert{
+    position: relative;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    border-radius: 5px;
+} */
 .alert{
     position: relative;
     padding: 10px;
@@ -90,3 +101,4 @@ nav li a:hover{
     border-color: #b8daff;
     border-radius: 5px;
 }
+

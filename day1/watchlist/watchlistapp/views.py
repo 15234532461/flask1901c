@@ -17,6 +17,7 @@ def index():
             flash('不能为空或超过最大长度！')
             return redirect(url_for('index'))
         # 保存表单数据
+        from watchlistapp.models import Movie
         movie = Movie(title=title,year=year)
         db.session.add(movie)
         db.session.commit()

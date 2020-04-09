@@ -60,6 +60,11 @@
                 </div>
             </li>
         </ul>
+        <div class="footer">
+            <hr>
+            <span>改变标题</span>
+            <input type="text" value="我的购物车清单" class="js-change-titile">
+        </div>
     </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -87,9 +92,13 @@
         function toggleRemoved(ev){
             $(ev.currentTarget).closest('li').toggleClass('removed')
         }
+        function onChangeTitle(){
+            $('h2').text($('.js-change-title').val())
+        }
 
         $('.js-add').click(onAdd)
         $('.js-item').click(toggleRemoved)
+        $('.js-change-titile').keyup(onChangeTitle)
     })
 </script>
 

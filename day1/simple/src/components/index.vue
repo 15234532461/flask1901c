@@ -14,12 +14,17 @@
                 <hr v-if="!product.list" />
                 </template>
             </div>
-            <div class="index-left-block lastest-news">
+            <template>
+                <div class="index-left-block lastest-news">
                 <h2>最新消息</h2>
                 <ul>
-                    <li>abc</li>
+                    <li v-for="xiaoxis in newsList">
+                        <a v-bind:href="xiaoxis.url">{{ xiaoxis.title }}</a>
+                    </li>
                 </ul>
-            </div>
+                </div>
+            </template>
+            
         </div>
         <div class="index-right" >
             <div style="font-size:40px;text-align:center;line-height:300px;width:900px;background: #4fc08d;" >
@@ -60,9 +65,50 @@
 </template>>
 
 <script>
+import axios from "axios";
 export default {
+    mounted() {
+        var that=this
+        axios.get("/getNewsList")
+          .then((response) => {
+              //headle success
+              console.log(response);
+              that.newsList = response.data.list
+          })
+          .catch((error) => {
+              // handle error
+              console.log(error);
+          });
+    },
     data() {
         return {
+            newsList:[
+                
+            ],
+            // xiaoxi:{
+            //         name:[
+            //             {
+            //                 content: "手机不是终点，汽车才是华为的下一个目标",
+            //                 url: "https://tech.sina.com.cn/mobile/n/n/2020-04-13/doc-iircuyvh7041870.shtml"
+            //             },
+            //             {
+            //                 content: "屡次突破拍照极限，华为P40带来手机摄影更多想象",
+            //                 url: "https://baijiahao.baidu.com/s?id=1663850916373477627&wfr=spider&for=pc"
+            //             },
+            //             {
+            //                 content: "联想刘军：新财年国内PC份额涨2% 服务营收破70亿元",
+            //                 url: "http://finance.sina.com.cn/stock/relnews/hk/2020-04-15/doc-iircuyvh7903952.shtml"
+            //             },
+            //             {
+            //                 content: "最新消息：苹果将今晚发布iPhone9(SE2)!",
+            //                 url: "http://news.ifeng.com/c/7vgvg1USoTg"
+            //             },
+            //             {
+            //                 content: "售价惊人的外星人Aurora台式电脑将来，你会买吗？",
+            //                 url: "https://baijiahao.baidu.com/s?id=1612316559468102586&wfr=spider&for=pc"
+            //             },
+            //         ]
+            //     },
             productList:{
                 pc: {
                     title:"PC产品",
@@ -147,7 +193,7 @@ export default {
         color: #222;
     }
     .index-left-block ul{
-        padding: 5px;
+        padding: 0 15px 5px 15px;
     }
     .hot-tag{
         color: white;
@@ -187,9 +233,10 @@ export default {
         height: 30px;
         line-height: 30px;
         color: #fff;
-        background: pink;
+        background: greenyellow;
         border-radius: 5px;
         text-align: center;
     }
+    
 
 </style>
